@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project DOM</title>
+    <style>        
+        body{
+            font-family:Arial;
+        }
+        .yt-button{
+            background-color: black;
+            color:white;
+            font-weight:bold ;
+            border:none;
+            border-radius: 18px;
+            padding: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            cursor:pointer;
+            margin-bottom: 35px;
+            transition: all 0.3s ease;
+        }
+        .is-subscribed{
+            background-color: rgb(240, 240, 240);
+            color:black;
+            transform: scale(1.05); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
+            opacity:0.95; 
+        }
+        .js-input{
+            padding: 11px;
+            padding-right: 30px;
+        }
+        .calcule-button{
+            padding: 11px;
+            background-color: rgb(5, 129, 5);
+            border: none;
+            color:white;
+            font-size: 15px;
+            padding:15px 15px;
+            cursor:pointer;
+            transition: all 0.3s ease;
+        }
+        .calcule-button:hover{
+            transform: scale(1.05); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
+            opacity:0.95;      
+        }
+        .btn{ 
+            border-radius:20px; 
+            background: linear-gradient(45deg, #7c09ba, #a316c3); 
+            border: none; 
+            height:37px; 
+            width: 110px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size:12px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+            transition: all 0.3s ease; 
+        } 
+        .btn:hover{ 
+            transform: scale(1.05); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
+            opacity:0.95; 
+            background: linear-gradient(45deg, hsl(286, 81%, 56%), #af3aca); 
+            border: solid 2px rgb(181, 80, 203); 
+        } 
+        .btn:active{ 
+            transform: scale(0.95); opacity:0.8; 
+        }
+        .btn a{
+            color:white; 
+        }
+    </style>
+</head>
+<body>
+    <p>YouTube Subscribe Button </p>
+    <button class="yt-button" onclick="
+        subscribe();
+
+    ">Subscribe</button>
+  
+   
+    <p>Amazon Shipping Calculator </p>
+    <p>Orders under $40 = +$10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+    <input placeholder="Cost of order" class="js-input" onkeydown="handleKeydown(event);"> 
+    <button class="calcule-button" onclick="
+        calculShip();
+    ">Calculate</button>
+    <p class="js-total-cost"></p>
+    <br>
+   
+    <br>
+    <p>Go to the game: Rock Paper Scissors</p>
+    <button class="btn"><a href="css-rock-paper-scissors.html" target="_blank" >Click here</a></button>
+
+    <script>
+        function handleKeydown(event){
+            
+            if(event.key=== 'Entrer'){
+                calculShip();
+            }
+        }
+        function subscribe(){
+            const buttonElement= document.querySelector('.yt-button');
+            if(buttonElement.innerText=== 'Subscribe'){
+              buttonElement.innerText='Subscribed';
+              buttonElement.classList.add('is-subscribed');
+            }else {
+              buttonElement.innerText='Subscribe';
+              buttonElement.classList.remove('is-subscribed');
+            }
+        }
+        function calculShip(){
+            const inputElement=document.querySelector('.js-input');
+            let cost = Number(inputElement.value) ;
+            if(cost < 40){
+                cost+=10;}
+            document.querySelector('.js-total-cost').innerHTML=`$${cost}`;
+       
+        }
+ 
+    </script>
+</body>
+</html>
